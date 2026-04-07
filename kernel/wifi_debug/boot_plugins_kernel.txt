@@ -1,0 +1,1 @@
+/dev_flash/hen/plugins/kernel/wifi_debug.bin
