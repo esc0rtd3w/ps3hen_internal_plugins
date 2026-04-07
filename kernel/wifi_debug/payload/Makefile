@@ -16,36 +16,52 @@ SUPPORTED_FIRMWARES := 480C 481C 482C 482D 483C 484C 484D 485C 486C 487C 488C 48
 
 ifeq ($(FIRMWARE),480C)
 FIRMWARE_DEF := FIRMWARE_4_80
+START_OBJ := start_490.o
 else ifeq ($(FIRMWARE),481C)
 FIRMWARE_DEF := FIRMWARE_4_81
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),482C)
 FIRMWARE_DEF := FIRMWARE_4_82
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),482D)
 FIRMWARE_DEF := FIRMWARE_4_82DEX
+START_OBJ := start_DEX.o
 else ifeq ($(FIRMWARE),483C)
 FIRMWARE_DEF := FIRMWARE_4_83
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),484C)
 FIRMWARE_DEF := FIRMWARE_4_84
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),484D)
 FIRMWARE_DEF := FIRMWARE_4_84DEX
+START_OBJ := start_DEX.o
 else ifeq ($(FIRMWARE),485C)
 FIRMWARE_DEF := FIRMWARE_4_85
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),486C)
 FIRMWARE_DEF := FIRMWARE_4_86
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),487C)
 FIRMWARE_DEF := FIRMWARE_4_87
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),488C)
 FIRMWARE_DEF := FIRMWARE_4_88
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),489C)
 FIRMWARE_DEF := FIRMWARE_4_89
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),490C)
 FIRMWARE_DEF := FIRMWARE_4_90
+START_OBJ := start_490.o
 else ifeq ($(FIRMWARE),491C)
 FIRMWARE_DEF := FIRMWARE_4_91
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),492C)
 FIRMWARE_DEF := FIRMWARE_4_92
+START_OBJ := start.o
 else ifeq ($(FIRMWARE),493C)
 FIRMWARE_DEF := FIRMWARE_4_93
+START_OBJ := start.o
 else
 $(error Unsupported FIRMWARE '$(FIRMWARE)'. Supported values: $(SUPPORTED_FIRMWARES))
 endif
@@ -57,7 +73,7 @@ CFLAGS += --std=gnu99
 
 LDFLAGS = -T $(TARGET).ld -nostartfiles -nostdlib -nodefaultlibs -Wl,-static -Wl,-s -L. $(foreach dir,$(LIBSDIR),-L$(dir)) $(LIBS) -Wl,--gc-sections -Wl
 
-OBJS = start.o main.o ../lv2/src/libc.o ../lv2/src/memory.o ../lv2/src/io.o ../lv2/src/thread.o ../lv2/src/process.o ../lv2/src/net.o ../lv2/src/syscall.o
+OBJS = $(START_OBJ) main.o ../lv2/src/libc.o ../lv2/src/memory.o ../lv2/src/io.o ../lv2/src/thread.o ../lv2/src/process.o ../lv2/src/net.o ../lv2/src/syscall.o
 
 OUTPUT ?= $(TARGET).bin
 
