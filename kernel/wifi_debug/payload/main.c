@@ -420,7 +420,7 @@ static int wifi_debug_start(void)
     mailbox_init();
     //write_status_file("start");
 
-    mailbox_push("PS3HEN WiFi Debug Plugin Ready!\n");
+    mailbox_push("\nPS3HEN WiFi Debug Plugin Ready!\n");
 
     return ppu_thread_create(&thread, worker_main, 0, WORKER_PRIO, WORKER_STACK, 0, "PS3HEN_WifiDebug");
 }
